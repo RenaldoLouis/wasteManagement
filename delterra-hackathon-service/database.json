@@ -2,7 +2,7 @@
     "dev": {
         "driver": "pg",
         "user": "postgres",
-        "password": "password",
+        "password": "postgres",
         "host": "localhost",
         "database": "delterrademo",
         "port": "5432"
