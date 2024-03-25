@@ -1,6 +1,6 @@
 const { user } = require('../configs/DbConfig.js');
 const db = require('../repositories/UserRepository.js');
-const UserService = require('../services/userService.js');
+const UserService = require('../services/UserService.js');
 const helper = require('../utils/DataUtil.js');
 const { validationResult } = require('express-validator');
 
