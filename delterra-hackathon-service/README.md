@@ -28,8 +28,22 @@ Follow these steps to install and set up the project:
    ```
 
 3. Install project dependencies:
+
    ```bash
     npm install
+   ```
+
+4. Create Database:
+
+   ```bash
+   chmod +x Makefile
+   make createdb
+   ```
+
+5. Create Table:
+
+   ```bash
+   db-migrate up
    ```
 
 ## Usage
