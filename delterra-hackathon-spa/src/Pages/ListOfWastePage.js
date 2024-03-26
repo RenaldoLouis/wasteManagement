@@ -152,7 +152,7 @@ const ListOfWastePage = props => {
 
                     <Show.Else>
                         <Typography type={TypographyType.xxLargeBold}>
-                            LOADING...
+                            No Data Found
                         </Typography>
                     </Show.Else>
                 </Show>
