@@ -10,11 +10,62 @@ import { TypographyType } from '../Constants/Typography';
 
 import { useAppStyles } from '../AppStyles';
 import { useStyles } from '../styles/MainPageStyles';
+import Grid from '@material-ui/core/Grid';
+import CardPile from '../Components/CardPile/CardPile';
+
+// import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 
 const MainPage = props => {
     const appClasses = useAppStyles();
     const classes = useStyles();
     const [pokemon, setPokemon] = useState([]);
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
+    const [compostConversionData, setCompostConversionData] = useState(
+        [
+            {
+                id: "java",
+                label: "java",
+                value: 195,
+                color: "hsl(90, 70%, 50%)"
+            },
+            {
+                id: "erlang",
+                label: "erlang",
+                value: 419,
+                color: "hsl(56, 70%, 50%)"
+            },
+            {
+                id: "ruby",
+                label: "ruby",
+                value: 407,
+                color: "hsl(103, 70%, 50%)"
+            },
+            {
+                id: "haskell",
+                label: "haskell",
+                value: 474,
+                color: "hsl(186, 70%, 50%)"
+            },
+            {
+                id: "go",
+                label: "go",
+                value: 71,
+                color: "hsl(104, 70%, 50%)"
+            }
+        ]
+    );
+
     const data = [
         {
             day: "Monday",
@@ -43,39 +94,6 @@ const MainPage = props => {
         {
             day: "Sunday",
             degress: 67
-        }
-    ];
-
-    const data2 = [
-        {
-            id: "java",
-            label: "java",
-            value: 195,
-            color: "hsl(90, 70%, 50%)"
-        },
-        {
-            id: "erlang",
-            label: "erlang",
-            value: 419,
-            color: "hsl(56, 70%, 50%)"
-        },
-        {
-            id: "ruby",
-            label: "ruby",
-            value: 407,
-            color: "hsl(103, 70%, 50%)"
-        },
-        {
-            id: "haskell",
-            label: "haskell",
-            value: 474,
-            color: "hsl(186, 70%, 50%)"
-        },
-        {
-            id: "go",
-            label: "go",
-            value: 71,
-            color: "hsl(104, 70%, 50%)"
         }
     ];
 
@@ -122,7 +140,7 @@ const MainPage = props => {
                 </Typography>
             </div>
             <ResponsiveFunnel
-                data={data2}
+                data={compostConversionData}
                 margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 interpolation="linear"
                 shapeBlending={0.37}
@@ -147,14 +165,14 @@ const MainPage = props => {
                 currentBorderWidth={40}
                 motionConfig="wobbly"
             />
-            <div className={appClasses.flexCenter}>
+            <div className={`${appClasses.p8} ${appClasses.flexCenter} ${classes.titleDashboardContainer}`}>
                 <Typography type={TypographyType.xLarge}>
                     composition performance
                 </Typography>
             </div>
             <ResponsivePie
-                data={data2}
-                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                data={compostConversionData}
+                margin={{ top: 0, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
                 padAngle={0.7}
                 cornerRadius={3}
@@ -167,7 +185,48 @@ const MainPage = props => {
                 arcLinkLabelsColor={{ from: "color" }}
                 arcLabelsSkipAngle={10}
                 arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
+                height={500}
             />
+
+            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justifyContent="space-around">
+                    <KeyboardDatePicker
+                        disableToolbar
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        margin="normal"
+                        id="date-picker-inline"
+                        label="Date picker inline"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                    <KeyboardDatePicker
+                        margin="normal"
+                        id="date-picker-dialog"
+                        label="Date picker dialog"
+                        format="MM/dd/yyyy"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                    <KeyboardTimePicker
+                        margin="normal"
+                        id="time-picker"
+                        label="Time picker"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change time',
+                        }}
+                    />
+                </Grid>
+            </MuiPickersUtilsProvider> */}
+            <CardPile />
         </div>
     )
 }

@@ -190,4 +190,13 @@ export const useAppStyles = makeStyles({
     textCenter: {
         textAlign: "center"
     },
+
+    flexColumn: {
+        display: "flex",
+        flexDirection: "column"
+    },
+
+    fullHeight: {
+        height: "100%"
+    }
 })

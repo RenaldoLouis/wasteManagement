@@ -8,7 +8,7 @@ export const DashboardApi = {
 
     getPokemonById(id) {
         return axios.get(`${BASE_URL + USER_API}${id}`);
-    }
+    },
 
     // createNewClient(userData) {
     //     return axios.post(getApiUrl() + USER_API_BASE_CLIENTS_URL, { userData });
