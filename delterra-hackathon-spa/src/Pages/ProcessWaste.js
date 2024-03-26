@@ -10,7 +10,7 @@ import Form from "../Components/Form/Form";
 
 const ProcessWaste = props => {
     const [deliveryId, setDeliveryId] = useState("")
-    const [date, setDate] = useState(moment().format)
+    const [date, setDate] = useState(moment())
     const [status, setStatus] = useState("")
     const [weight, setWeight] = useState("")
     const [volume, setVolume] = useState("")
