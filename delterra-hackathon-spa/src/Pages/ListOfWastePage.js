@@ -10,6 +10,8 @@ import { TypographyType } from "../Constants/Typography";
 import { MoreVert } from "@material-ui/icons";
 import { AppContext } from "../App";
 import { NAVBAR_TITLE } from "../Constants/NavbarTitle";
+import WasteApi from "../Apis/WasteApi";
+import { Show } from "../Components/Show/Show";
 
 const StatusChip = props => {
     const {
@@ -32,28 +34,7 @@ const StatusChip = props => {
 
 const ListOfWastePage = props => {
 
-    const [wasteList, setWasteList] = useState([
-        {
-            wasteId: 64358,
-            status: "STATUS 1"
-        },
-        {
-            wasteId: 45645,
-            status: "STATUS 2"
-        },
-        {
-            wasteId: 65787,
-            status: "STATUS 2"
-        },
-        {
-            wasteId: 55545,
-            status: "STATUS 1"
-        },
-        {
-            wasteId: 56788,
-            status: "STATUS 1"
-        },
-    ])
+    const [wasteList, setWasteList] = useState([])
     const [date, setDate] = useState(moment().format("YYYY-MM-DD"))
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
@@ -84,6 +65,24 @@ const ListOfWastePage = props => {
         setNavbarTitle(NAVBAR_TITLE.LIST_OF_WASTE)
     }, [])
 
+    useEffect(() => {
+        WasteApi.getAllWaste().then((res) => {
+            if (res?.data) {
+                const wasteData = res.data
+                const newWasteData = []
+
+                wasteData.forEach((waste) => {
+                    newWasteData.push({
+                        wasteId: waste.simple_id,
+                        status: waste.curr_waste_status
+                    })
+                })
+
+                setWasteList(newWasteData)
+            }
+        })
+    }, [])
+
     return (
         <Grid
             container
@@ -103,50 +102,60 @@ const ListOfWastePage = props => {
             </Grid>
 
             <Grid container item className={appClasses.gap16}>
-                <Each of={wasteList} render={(waste) =>
-                    <Grid item style={{ width: "100%" }}>
-                        <Paper className={`${appClasses.flexSpaceBetween} ${appClasses.p16} ${appClasses.alignCenter}`}>
-                            <Typography>
-                                {waste.wasteId}
-                            </Typography>
+                <Show>
+                    <Show.When isTrue={wasteList.length > 0}>
+                        <Each of={wasteList} render={(waste) =>
+                            <Grid item style={{ width: "100%" }}>
+                                <Paper className={`${appClasses.flexSpaceBetween} ${appClasses.p16} ${appClasses.alignCenter}`}>
+                                    <Typography>
+                                        {waste.wasteId}
+                                    </Typography>
 
-                            <Box className={`${appClasses.flex} ${appClasses.gap8} ${appClasses.alignCenter}`}>
-                                <StatusChip value={waste.status} />
-                                <IconButton
-                                    aria-label="more"
-                                    id="show-more-button"
-                                    aria-controls={open ? "show-more-menu" : undefined}
-                                    aria-expanded={open ? "true" : undefined}
-                                    aria-haspopup="true"
-                                    onClick={handleClickMoreOption}
-                                >
-                                    <MoreVert />
-                                </IconButton>
+                                    <Box className={`${appClasses.flex} ${appClasses.gap8} ${appClasses.alignCenter}`}>
+                                        <StatusChip value={waste.status} />
+                                        <IconButton
+                                            aria-label="more"
+                                            id="show-more-button"
+                                            aria-controls={open ? "show-more-menu" : undefined}
+                                            aria-expanded={open ? "true" : undefined}
+                                            aria-haspopup="true"
+                                            onClick={handleClickMoreOption}
+                                        >
+                                            <MoreVert />
+                                        </IconButton>
 
-                                {/* Show more menu */}
-                                <Menu
-                                    id="show-more-menu"
-                                    anchorEl={anchorEl}
-                                    keepMounted
-                                    open={open}
-                                    onClose={handleCloseMoreOption}
-                                    PaperProps={{
-                                        style: {
-                                            maxHeight: 200,
-                                            width: "100%"
-                                        }
-                                    }}
-                                >
-                                    <Each of={showMoreOptions} render={(option) =>
-                                        <MenuItem onClick={handleCloseMoreOption}>
-                                            {option}
-                                        </MenuItem>
-                                    } />
-                                </Menu>
-                            </Box>
-                        </Paper>
-                    </Grid>
-                } />
+                                        {/* Show more menu */}
+                                        <Menu
+                                            id="show-more-menu"
+                                            anchorEl={anchorEl}
+                                            keepMounted
+                                            open={open}
+                                            onClose={handleCloseMoreOption}
+                                            PaperProps={{
+                                                style: {
+                                                    maxHeight: 200,
+                                                    width: "100%"
+                                                }
+                                            }}
+                                        >
+                                            <Each of={showMoreOptions} render={(option) =>
+                                                <MenuItem onClick={handleCloseMoreOption}>
+                                                    {option}
+                                                </MenuItem>
+                                            } />
+                                        </Menu>
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                        } />
+                    </Show.When>
+
+                    <Show.Else>
+                        <Typography type={TypographyType.xxLargeBold}>
+                            LOADING...
+                        </Typography>
+                    </Show.Else>
+                </Show>
             </Grid>
         </Grid>
     )
