@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import DashboardApi from '../Apis/DashboardApi';
+import { Switch, Route } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import AddIcon from '@material-ui/icons/Add';
+import { Button, Grid } from '@material-ui/core';
 import { Each } from '../Components/Each/Each';
 import Typography from '../Components/Typography/Typography';
 import { TypographyType } from '../Constants/Typography';
 import { ROUTE_PATH } from '../Constants/RoutePath';
 import DetailPage from './DetailPage';
-import { Switch, Route } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import { Button, Grid } from '@material-ui/core';
 import Form from '../Components/Form/Form';
 import { useAppStyles } from '.././AppStyles';
 import { AppContext } from '../App';
+import AddInboundPage from './AddInboundPage';
+import DashboardApi from '../Apis/DashboardApi';
+import { NAVBAR_TITLE } from '../Constants/NavbarTitle';
 
 const PokemonList = props => {
     const [pokemon, setPokemon] = useState([]);
@@ -47,17 +50,16 @@ const PokemonList = props => {
 }
 
 const WasteRecordForm = props => {
+    const { Appclasses } = props
+
     const [tanggal, setTanggal] = useState("")
     const [idArmada, setIdArmada] = useState("")
     const [kemurnian, setKemurnian] = useState("")
     const [volume, setVolume] = useState("")
     const [catatan, setCatatan] = useState("")
 
-    const classes = useAppStyles()
-
     const handleSubmitWaste = (event) => {
         event.preventDefault()
-
         console.log(tanggal, idArmada, kemurnian, volume, catatan)
     }
 
@@ -65,7 +67,7 @@ const WasteRecordForm = props => {
         <form onSubmit={handleSubmitWaste}>
             <Grid
                 container
-                className={`${classes.flexCenter} ${classes.alignCenter} ${classes.gap16}`}
+                className={`${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16}`}
                 direction="column"
             >
                 <Grid item>
@@ -109,11 +111,11 @@ const WasteRecordForm = props => {
                     />
                 </Grid>
 
-                <Grid item>
-                    <Button variant="contained" color="primary" type="submit">
+                <Grid item spacing={3}>
+                    <Button variant="contained">
                         Sampah Masuk
                     </Button>
-                    <Button variant="contained">
+                    <Button variant="contained" color="primary" type="submit">
                         Mulai Pengomposan
                     </Button>
                 </Grid>
@@ -122,12 +124,54 @@ const WasteRecordForm = props => {
     )
 }
 
+const PlaceHolder = (props) => {
+    const { Appclasses } = props
+    const history = useHistory()
+
+    const handleAddInbound = () => {
+        history.push({
+            pathname: `${ROUTE_PATH.ADDINBOUND}`,
+        })
+    }
+    return (
+        <Grid
+            container
+            className={`${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16} ${Appclasses.fullHeightvh}`}
+            direction="column"
+        >
+            <div>
+                asd
+            </div>
+            <div>
+                <Button
+                    color="primary"
+                    startIcon={<AddIcon />}
+                    onClick={handleAddInbound}
+                >add Inbound Delivery
+                </Button>
+            </div>
+        </Grid>
+    )
+}
+
 const ListPage = props => {
-    const { isNavbarBack, setIsNavbarBack } = useContext(AppContext)
+    const { isNavbarBack, setIsNavbarBack, setNavbarTitle } = useContext(AppContext)
+
+    useEffect(() => {
+        setNavbarTitle(NAVBAR_TITLE.LISTINBOUND)
+    }, [])
+
+    const [inboundDeliveryData, setInboundDeliveryData] = useState([]);
+    const Appclasses = useAppStyles()
+
     return (
         <Switch>
             <Route path={ROUTE_PATH.LIST} exact>
-                <WasteRecordForm />
+                {inboundDeliveryData.length <= 0 ? (
+                    <PlaceHolder Appclasses={Appclasses} />
+                ) : (
+                    <WasteRecordForm Appclasses={Appclasses} />
+                )}
             </Route>
 
             <Route path={ROUTE_PATH.DETAIL + "/:id"}>

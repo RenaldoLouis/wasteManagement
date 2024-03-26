@@ -198,5 +198,9 @@ export const useAppStyles = makeStyles({
 
     fullHeight: {
         height: "100%"
+    },
+
+    fullHeightvh: {
+        height: "calc(100svh - 56px)"
     }
 })

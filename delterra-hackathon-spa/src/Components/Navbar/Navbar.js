@@ -11,11 +11,12 @@ import Menu from '@material-ui/core/Menu';
 import { useStyles } from './NavbarStyles';
 import { AppContext } from '../../App';
 import { useHistory } from "react-router-dom";
+import { Color } from '../../Constants/Color';
 
 const Navbar = (props) => {
     let history = useHistory();
 
-    const { isNavbarBack, setIsNavbarBack } = useContext(AppContext)
+    const { isNavbarBack, setIsNavbarBack, navbarTitle } = useContext(AppContext)
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,7 +32,7 @@ const Navbar = (props) => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar className={classes.rootBackgroundColor} position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         {isNavbarBack ? (
@@ -41,7 +42,7 @@ const Navbar = (props) => {
                         )}
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        Photos
+                        {navbarTitle}
                     </Typography>
                     <div>
                         <IconButton

@@ -4,6 +4,7 @@ import ListPage from "../Pages/ListPage";
 import MenuPage from "../Pages/MenuPage";
 import { ROUTE_PATH } from "../Constants/RoutePath";
 import { Route, Switch } from "react-router-dom";
+import AddInboundPage from "../Pages/AddInboundPage";
 
 const MAIN_ROUTES = [
     {
@@ -19,7 +20,11 @@ const MAIN_ROUTES = [
         path: ROUTE_PATH.MENU,
         exact: true,
         component: () => <MenuPage />
-    }
+    },
+    {
+        path: ROUTE_PATH.ADDINBOUND,
+        component: () => <AddInboundPage />
+    },
 ]
 
 export const RenderRoutes = () => {
