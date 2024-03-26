@@ -2,7 +2,8 @@ import { Each } from "../Components/Each/Each";
 import MainPage from "../Pages/MainPage";
 import ListPage from "../Pages/ListPage";
 import MenuPage from "../Pages/MenuPage";
-import ProcessWaste from "../Pages/ProcessWaste";
+import ProcessWastePage from "../Pages/ProcessWastePage";
+import ListOfWastePage from "../Pages/ListOfWastePage";
 import { ROUTE_PATH } from "../Constants/RoutePath";
 import { Route, Switch } from "react-router-dom";
 import AddInboundPage from "../Pages/AddInboundPage";
@@ -30,7 +31,12 @@ const MAIN_ROUTES = [
     {
         path: ROUTE_PATH.PROCESS_WASTE,
         exact: true,
-        component: () => <ProcessWaste />
+        component: () => <ProcessWastePage />
+    },
+    {
+        path: ROUTE_PATH.LIST_OF_WASTE,
+        exact: true,
+        component: () => <ListOfWastePage />
     },
 ]
 

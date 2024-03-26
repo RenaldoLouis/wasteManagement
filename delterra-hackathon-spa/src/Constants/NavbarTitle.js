@@ -3,5 +3,6 @@ export const NAVBAR_TITLE = {
     LISTINBOUND: "List of Inbound",
     ADDINBOUND: "Add Inbound Delivery",
     DETAIL: "Detail",
-    PROCESS_WASTE: "Process Waste"
+    PROCESS_WASTE: "Process Waste",
+    LIST_OF_WASTE: "List of Waste"
 }

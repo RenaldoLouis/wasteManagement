@@ -4,5 +4,6 @@ export const ROUTE_PATH = {
     DETAIL: "/list/detail",
     MENU: "/menu",
     ADDINBOUND: "/add-inbound",
-    PROCESS_WASTE: "/process-waste"
+    PROCESS_WASTE: "/process-waste",
+    LIST_OF_WASTE: "/list-of-waste"
 }
