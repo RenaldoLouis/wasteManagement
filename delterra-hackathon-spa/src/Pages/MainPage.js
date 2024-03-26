@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DashboardApi from '../Apis/DashboardApi';
 import { Each } from '../Components/Each/Each';
 import { ResponsivePie } from '@nivo/pie';
@@ -19,6 +19,8 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { NAVBAR_TITLE } from '../Constants/NavbarTitle';
+import { AppContext } from '../App';
 
 
 const MainPage = props => {
@@ -26,6 +28,7 @@ const MainPage = props => {
     const classes = useStyles();
     const [pokemon, setPokemon] = useState([]);
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const { setIsNavbarBack, setNavbarTitle } = useContext(AppContext)
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
@@ -98,6 +101,8 @@ const MainPage = props => {
     ];
 
     useEffect(() => {
+        setIsNavbarBack(true)
+        setNavbarTitle(NAVBAR_TITLE.DASHBOARD)
         DashboardApi.getAllPokemons(25).then((res) => {
             console.log(res)
             setPokemon(res.data.results);

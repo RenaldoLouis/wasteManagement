@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 import { useAppStyles } from "../AppStyles";
 import { Each } from "../Components/Each/Each";
@@ -8,14 +8,25 @@ import Typography from "../Components/Typography/Typography";
 import { Grid } from "@material-ui/core";
 import MenuCard from "../Components/MenuCard/MenuCard";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { ROUTE_PATH } from "../Constants/RoutePath";
+import { NAVBAR_TITLE } from "../Constants/NavbarTitle";
+import { AppContext } from "../App";
 
 const MenuPage = props => {
+    const appClasses = useAppStyles()
+    let history = useHistory();
+    const { setIsNavbarBack, setNavbarTitle } = useContext(AppContext)
 
     const menuList = [
         {
             icon: <DashboardIcon />,
             label: "Dashboard",
-            handleClick: () => console.log("dashboard")
+            handleClick: () => {
+                history.push({
+                    pathname: `${ROUTE_PATH.DASHBOARD}`,
+                })
+            }
         },
         {
             icon: <DashboardIcon />,
@@ -25,12 +36,20 @@ const MenuPage = props => {
         {
             icon: <DashboardIcon />,
             label: "List of Waste",
-            handleClick: () => console.log("list of waste")
+            handleClick: () => {
+                history.push({
+                    pathname: `${ROUTE_PATH.LIST_OF_WASTE}`,
+                })
+            }
         },
         {
             icon: <DashboardIcon />,
             label: "List of Inbound",
-            handleClick: () => console.log("list of inbound")
+            handleClick: () => {
+                history.push({
+                    pathname: `${ROUTE_PATH.LIST}`,
+                })
+            }
         },
         {
             icon: <DashboardIcon />,
@@ -39,7 +58,10 @@ const MenuPage = props => {
         },
     ]
 
-    const appClasses = useAppStyles()
+    useEffect(() => {
+        setIsNavbarBack(false)
+        setNavbarTitle(NAVBAR_TITLE.HOME)
+    }, [])
 
     return (
         <Grid

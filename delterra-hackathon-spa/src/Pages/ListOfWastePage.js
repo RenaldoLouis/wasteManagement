@@ -59,7 +59,8 @@ const ListOfWastePage = props => {
     const open = Boolean(anchorEl)
 
     const {
-        setNavbarTitle
+        setNavbarTitle,
+        setIsNavbarBack
     } = useContext(AppContext)
 
     const appClasses = useAppStyles()
@@ -79,6 +80,7 @@ const ListOfWastePage = props => {
     }
 
     useEffect(() => {
+        setIsNavbarBack(true)
         setNavbarTitle(NAVBAR_TITLE.LIST_OF_WASTE)
     }, [])
 

@@ -14,16 +14,16 @@ const MAIN_ROUTES = [
     {
         path: ROUTE_PATH.MAIN,
         exact: true,
-        component: () => <MainPage />
+        component: () => <MenuPage />
     },
     {
         path: ROUTE_PATH.LIST,
         component: () => <ListPage />
     },
     {
-        path: ROUTE_PATH.MENU,
+        path: ROUTE_PATH.DASHBOARD,
         exact: true,
-        component: () => <MenuPage />
+        component: () => <MainPage />
     },
     {
         path: ROUTE_PATH.ADDINBOUND,

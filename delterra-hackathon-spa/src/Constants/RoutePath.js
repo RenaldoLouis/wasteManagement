@@ -2,7 +2,7 @@ export const ROUTE_PATH = {
     MAIN: "/",
     LIST: "/list",
     DETAIL: "/list/detail",
-    MENU: "/menu",
+    DASHBOARD: "/dashboard",
     ADDINBOUND: "/add-inbound",
     PROCESS_WASTE: "/process-waste",
     LIST_OF_WASTE: "/list-of-waste",

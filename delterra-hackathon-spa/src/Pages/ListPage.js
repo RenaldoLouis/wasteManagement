@@ -156,6 +156,7 @@ const ListPage = props => {
         })
     }
     useEffect(() => {
+        setIsNavbarBack(true)
         setNavbarTitle(NAVBAR_TITLE.LISTINBOUND)
     }, [])
 

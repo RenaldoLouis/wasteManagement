@@ -18,6 +18,7 @@ const AddInboundPage = () => {
     const { isNavbarBack, setIsNavbarBack, setNavbarTitle } = useContext(AppContext)
 
     useEffect(() => {
+        setIsNavbarBack(true)
         setNavbarTitle(NAVBAR_TITLE.ADDINBOUND)
     }, [])
 
