@@ -1,5 +1,5 @@
 export const NAVBAR_TITLE = {
-    HOME: "Home",
+    HOME: "delcompost",
     LISTINBOUND: "List of Inbound",
     ADDINBOUND: "Add Inbound Delivery",
     DETAIL: "Detail",

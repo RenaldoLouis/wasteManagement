@@ -19,6 +19,7 @@ const MenuCard = props => {
     return (
         <Paper
             className={`${classes.root}`}
+            style={{ backgroundColor: data.color }}
             onClick={data.handleClick}
         >
             <SvgIcon className={appClasses.pt44} htmlColor={Color.neutral[0]}>

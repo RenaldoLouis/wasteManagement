@@ -12,6 +12,11 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ROUTE_PATH } from "../Constants/RoutePath";
 import { NAVBAR_TITLE } from "../Constants/NavbarTitle";
 import { AppContext } from "../App";
+import ListOfCompostIcon from "../Icons/ListOfCompostIcon";
+import ListOfWaste from "../Icons/ListOfWaste";
+import ListOfInboundIcon from "../Icons/ListOfInboundIcon";
+import ListOfSalesInvoiceIcon from "../Icons/ListOfSalesInvoice";
+import { Color } from "../Constants/Color";
 
 const MenuPage = props => {
     const appClasses = useAppStyles()
@@ -29,21 +34,7 @@ const MenuPage = props => {
             }
         },
         {
-            icon: <DashboardIcon />,
-            label: "List of Compost Package",
-            handleClick: () => console.log("list of compost package")
-        },
-        {
-            icon: <DashboardIcon />,
-            label: "List of Waste",
-            handleClick: () => {
-                history.push({
-                    pathname: `${ROUTE_PATH.LIST_OF_WASTE}`,
-                })
-            }
-        },
-        {
-            icon: <DashboardIcon />,
+            icon: <ListOfInboundIcon />,
             label: "List of Inbound",
             handleClick: () => {
                 history.push({
@@ -52,7 +43,23 @@ const MenuPage = props => {
             }
         },
         {
-            icon: <DashboardIcon />,
+            icon: <ListOfWaste />,
+            label: "List of Waste",
+            handleClick: () => {
+                history.push({
+                    pathname: `${ROUTE_PATH.LIST_OF_WASTE}`,
+                })
+            }
+        },
+        {
+            icon: <ListOfCompostIcon />,
+            label: "List of Compost Package",
+            color: Color.neutral[40],
+            handleClick: () => console.log("list of compost package")
+        },
+        {
+            icon: <ListOfSalesInvoiceIcon />,
+            color: Color.neutral[40],
             label: "List of Sales Invoice",
             handleClick: () => console.log("list of sales invoice")
         },
