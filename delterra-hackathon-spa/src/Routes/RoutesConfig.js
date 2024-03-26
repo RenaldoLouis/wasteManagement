@@ -7,6 +7,8 @@ import ListOfWastePage from "../Pages/ListOfWastePage";
 import { ROUTE_PATH } from "../Constants/RoutePath";
 import { Route, Switch } from "react-router-dom";
 import AddInboundPage from "../Pages/AddInboundPage";
+import ComposePackage from "../Pages/ComposePackage";
+import CreateComposePackage from "../Pages/CreateComposePackage";
 
 const MAIN_ROUTES = [
     {
@@ -37,6 +39,16 @@ const MAIN_ROUTES = [
         path: ROUTE_PATH.LIST_OF_WASTE,
         exact: true,
         component: () => <ListOfWastePage />
+    },
+    {
+        path: ROUTE_PATH.COMPOSEPACKGE,
+        exact: true,
+        component: () => <ComposePackage />
+    },
+    {
+        path: ROUTE_PATH.CREATECOMPOSEPACKAGE,
+        exact: true,
+        component: () => <CreateComposePackage />
     },
 ]
 

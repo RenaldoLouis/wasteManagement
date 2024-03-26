@@ -4,5 +4,7 @@ export const NAVBAR_TITLE = {
     ADDINBOUND: "Add Inbound Delivery",
     DETAIL: "Detail",
     PROCESS_WASTE: "Process Waste",
-    LIST_OF_WASTE: "List of Waste"
+    LIST_OF_WASTE: "List of Waste",
+    LISTOFCOMPOST: "List of Compose Package",
+    CREATECOMPOSE: "Create Compose Package"
 }

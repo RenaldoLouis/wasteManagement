@@ -5,15 +5,14 @@ import { AppContext } from '../App';
 import { NAVBAR_TITLE } from '../Constants/NavbarTitle';
 import Form from '../Components/Form/Form';
 import moment from 'moment'
-import Typography from '../Components/Typography/Typography';
 
 
-const AddInboundPage = () => {
+const CreateComposePackage = () => {
     const Appclasses = useAppStyles()
     const { isNavbarBack, setIsNavbarBack, setNavbarTitle } = useContext(AppContext)
 
     useEffect(() => {
-        setNavbarTitle(NAVBAR_TITLE.ADDINBOUND)
+        setNavbarTitle(NAVBAR_TITLE.CREATECOMPOSE)
     }, [])
 
     const [deliveryId, setDeliveryId] = useState("123")
@@ -28,15 +27,7 @@ const AddInboundPage = () => {
 
     const handleSubmitWaste = (event) => {
         event.preventDefault()
-        let objSend = {
-            rejected_weight: 5,
-            organic_weight: 50,
-            inorganic_weight: 10,
-            hardOrganuc_weight: 5,
-            license_plate: "ABX 1098 LP",
-            note: "compose food",
-        }
-        console.log("objSend", objSend)
+        console.log(date, note, rejectedWeight, hardOrganicWeight, inOrganicWeight, organicWeight, licensePlate)
     }
 
     useEffect(() => {
@@ -56,21 +47,20 @@ const AddInboundPage = () => {
                 className={`${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16}`}
                 direction="column"
             >
-                {/* <Grid className={Appclasses.fullWidth} item>
+                <Grid className={Appclasses.fullWidth} item>
                     <Form
                         id="deliveryId"
                         label="Delivery ID"
                         value={deliveryId}
                         disabled={true}
                     />
-                </Grid> */}
+                </Grid>
                 <Grid className={Appclasses.fullWidth} item>
                     <Form
                         id="date"
-                        // label="Date"
+                        label="Date"
                         value={date}
                         onChange={e => setDate(e.target.value)}
-                        type={"date"}
                     />
                 </Grid>
                 <Grid className={Appclasses.fullWidth} item>
@@ -156,13 +146,13 @@ const AddInboundPage = () => {
                 <Grid className={`${Appclasses.fullWidth} ${Appclasses.gap8}`} item >
                     <Grid container spacing={3}>
                         <Grid item xs={6}>
-                            <Button className={`${Appclasses.fullWidth}`} variant="contained" type="submit">
+                            <Button className={`${Appclasses.fullWidth}`} variant="contained">
                                 Submit
                             </Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <Button className={`${Appclasses.fullWidth}`} variant="contained" color="primary">
-                                <Typography />
+                            <Button className={`${Appclasses.fullWidth}`} variant="contained" color="primary" type="submit">
+                                Process Waste
                             </Button>
                         </Grid>
                     </Grid>
@@ -172,4 +162,4 @@ const AddInboundPage = () => {
     )
 }
 
-export default AddInboundPage;
+export default CreateComposePackage;

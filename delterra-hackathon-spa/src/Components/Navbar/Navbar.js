@@ -44,7 +44,7 @@ const Navbar = (props) => {
                     <Typography variant="h6" className={classes.title}>
                         {navbarTitle}
                     </Typography>
-                    <div>
+                    {/* <div>
                         <IconButton
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -72,7 +72,7 @@ const Navbar = (props) => {
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>My account</MenuItem>
                         </Menu>
-                    </div>
+                    </div> */}
                 </Toolbar>
             </AppBar>
         </div>

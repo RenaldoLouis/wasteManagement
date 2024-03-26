@@ -5,5 +5,7 @@ export const ROUTE_PATH = {
     MENU: "/menu",
     ADDINBOUND: "/add-inbound",
     PROCESS_WASTE: "/process-waste",
-    LIST_OF_WASTE: "/list-of-waste"
+    LIST_OF_WASTE: "/list-of-waste",
+    COMPOSEPACKGE: "/compose-package",
+    CREATECOMPOSEPACKAGE: "/create-compose-package"
 }
