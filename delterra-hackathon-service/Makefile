@@ -1,6 +1,6 @@
-DATABASE_NAME = delterrademo
+DATABASE_NAME = delterra_hackathon
 
 createdb:
-	psql -c "CREATE DATABASE $(DATABASE_NAME);" || true
+	psql -d postgres -c "CREATE DATABASE $(DATABASE_NAME);" || true
 
 .PHONY: createdb
