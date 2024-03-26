@@ -2,6 +2,7 @@
   "name": "template-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@date-io/date-fns": "^3.0.0",
     "@fontsource/inter": "^5.0.17",
