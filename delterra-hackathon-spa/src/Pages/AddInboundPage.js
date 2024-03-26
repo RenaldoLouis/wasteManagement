@@ -41,7 +41,7 @@ const AddInboundPage = () => {
     }, [rejectedWeight, hardOrganicWeight, organicWeight, inOrganicWeight])
 
     return (
-        <form className={Appclasses.p16} onSubmit={handleSubmitWaste}>
+        <form className={Appclasses.p20} onSubmit={handleSubmitWaste}>
             <Grid
                 container
                 className={`${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16}`}

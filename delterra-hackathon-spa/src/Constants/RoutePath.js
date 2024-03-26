@@ -3,6 +3,6 @@ export const ROUTE_PATH = {
     LIST: "/list",
     DETAIL: "/list/detail",
     MENU: "/menu",
-    ADDINBOUND: "/addInbound",
+    ADDINBOUND: "/add-inbound",
     PROCESS_WASTE: "/process-waste"
 }
