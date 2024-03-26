@@ -10,7 +10,6 @@ import { useHistory } from 'react-router-dom';
 import { Button, Grid } from '@material-ui/core';
 import Form from '../Components/Form/Form';
 import { useAppStyles } from '.././AppStyles';
-import DatePickerField from '../Components/Form/DatePicker';
 
 const PokemonList = props => {
     const [pokemon, setPokemon] = useState([]);
