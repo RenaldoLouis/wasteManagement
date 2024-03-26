@@ -12,8 +12,21 @@ const idUserValidation = [
     param('id', 'id has to be filled!').notEmpty(),
 ];
 
+const inboundDeliveryBodyValidation = [
+    body('organic_weight').notEmpty().withMessage("organic weight must be filled"),
+    body('rejected_weight').notEmpty().withMessage("rejected weight must be filled"),
+    body('inorganic_weight').notEmpty().withMessage("inorganic weight must be filled"),
+    body('license_plate').notEmpty().withMessage("license plate must be filled!")
+]
+
+const wasteBodyValidation = [
+    body('inbound_delivery_id').notEmpty().withMessage("inbound_delivery_id must be filled"),
+]
+
 module.exports = {
     bodyUserValidation,
     idUserValidation,
+    inboundDeliveryBodyValidation,
+    wasteBodyValidation
 }
 
