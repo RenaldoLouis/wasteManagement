@@ -1,15 +1,22 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useStyles } from './NavbarStyles';
+import { AppContext } from '../../App';
+import { useHistory } from "react-router-dom";
 
 const Navbar = (props) => {
+    let history = useHistory();
+
+    const { isNavbarBack, setIsNavbarBack } = useContext(AppContext)
+
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -27,7 +34,11 @@ const Navbar = (props) => {
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
+                        {isNavbarBack ? (
+                            <ChevronLeftIcon onClick={() => history.goBack()} />
+                        ) : (
+                            <MenuIcon />
+                        )}
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         Photos

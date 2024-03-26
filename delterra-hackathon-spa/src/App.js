@@ -10,8 +10,7 @@ import { createContext, useState } from 'react';
 export const AppContext = createContext({})
 
 function App() {
-
-  const [isNavbarBack, setIsNavbarBack] = useState(false)
+  const [isNavbarBack, setIsNavbarBack] = useState(true)
 
   const AppContextValue = {
     setIsNavbarBack,
