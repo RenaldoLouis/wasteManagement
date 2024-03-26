@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { BASE_URL, USER_API } from '../Constants/Api';
+import { BASE_URL, INBOUND_API } from '../Constants/Api';
 
 export const DashboardApi = {
     getAllPokemons(limit) {
-        return axios.get(`${BASE_URL + USER_API}?limit=${limit}`);
+        return axios.get(`${BASE_URL + INBOUND_API}?limit=${limit}`);
     },
 
     getPokemonById(id) {
-        return axios.get(`${BASE_URL + USER_API}${id}`);
+        return axios.get(`${BASE_URL + INBOUND_API}${id}`);
     },
 
     // createNewClient(userData) {

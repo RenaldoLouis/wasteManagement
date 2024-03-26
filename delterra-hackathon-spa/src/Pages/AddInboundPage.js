@@ -6,9 +6,14 @@ import { NAVBAR_TITLE } from '../Constants/NavbarTitle';
 import Form from '../Components/Form/Form';
 import moment from 'moment'
 import Typography from '../Components/Typography/Typography';
+import { TypographyType } from '../Constants/Typography';
+import InboundApi from '../Apis/InboundApi';
+import { ROUTE_PATH } from '../Constants/RoutePath';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const AddInboundPage = () => {
+    const history = useHistory()
     const Appclasses = useAppStyles()
     const { isNavbarBack, setIsNavbarBack, setNavbarTitle } = useContext(AppContext)
 
@@ -17,7 +22,6 @@ const AddInboundPage = () => {
     }, [])
 
     const [deliveryId, setDeliveryId] = useState("123")
-    const [date, setDate] = useState(moment().format("DD/MM/YY"))
     const [note, setNote] = useState("")
     const [licensePlate, setLicensePlate] = useState("")
     const [organicWeight, setOrganicWeight] = useState(0)
@@ -26,17 +30,57 @@ const AddInboundPage = () => {
     const [hardOrganicWeight, setHardOrganicWeight] = useState(0)
     const [totalWeight, setTotalWeight] = useState(0)
 
+    const [errorExist, setErrorExist] = useState(false)
+
     const handleSubmitWaste = (event) => {
         event.preventDefault()
-        let objSend = {
-            rejected_weight: 5,
-            organic_weight: 50,
-            inorganic_weight: 10,
-            hardOrganuc_weight: 5,
-            license_plate: "ABX 1098 LP",
-            note: "compose food",
+
+        if (rejectedWeight === 0) {
+            setErrorExist(true)
+            return;
         }
-        console.log("objSend", objSend)
+
+        if (organicWeight === 0) {
+            setErrorExist(true)
+            return;
+        }
+
+        if (inOrganicWeight === 0) {
+            setErrorExist(true)
+            return;
+        }
+
+        if (hardOrganicWeight === 0) {
+            setErrorExist(true)
+            return;
+        }
+
+        if (licensePlate === "") {
+            setErrorExist(true)
+            return;
+        }
+
+        if (note === "") {
+            setErrorExist(true)
+            return;
+        }
+
+        let objSend = {
+            rejected_weight: rejectedWeight,
+            organic_weight: organicWeight,
+            inorganic_weight: inOrganicWeight,
+            hardOrganic_weight: hardOrganicWeight,
+            license_plate: licensePlate,
+            note: note,
+        }
+
+        InboundApi.createInboundDeliveryData(objSend).then((res) => {
+            if (res.status === 200) {
+                history.push({
+                    pathname: `${ROUTE_PATH.LIST}`,
+                })
+            }
+        }).catch((err) => console.log(err));
     }
 
     useEffect(() => {
@@ -64,7 +108,7 @@ const AddInboundPage = () => {
                         disabled={true}
                     />
                 </Grid> */}
-                <Grid className={Appclasses.fullWidth} item>
+                {/* <Grid className={Appclasses.fullWidth} item>
                     <Form
                         id="date"
                         // label="Date"
@@ -72,7 +116,7 @@ const AddInboundPage = () => {
                         onChange={e => setDate(e.target.value)}
                         type={"date"}
                     />
-                </Grid>
+                </Grid> */}
                 <Grid className={Appclasses.fullWidth} item>
                     <div className={`${Appclasses.alignCenter} ${Appclasses.flex} ${Appclasses.gap8}`} style={{ display: "flex" }}>
                         <Form
@@ -149,6 +193,14 @@ const AddInboundPage = () => {
                     </div>
                 </Grid>
 
+                {
+                    errorExist && (
+                        <div className={Appclasses.colorRed}>
+                            Please Fill All Form
+                        </div>
+                    )
+                }
+
                 <Grid className={`${Appclasses.fullWidth} ${Appclasses.flexEnd}`} item>
                     Total Weight {totalWeight} KG
                 </Grid>
@@ -157,12 +209,18 @@ const AddInboundPage = () => {
                     <Grid container spacing={3}>
                         <Grid item xs={6}>
                             <Button className={`${Appclasses.fullWidth}`} variant="contained" type="submit">
-                                Submit
+
+                                <Typography type={TypographyType.xSmall}>
+                                    Submit
+                                </Typography>
                             </Button>
+
                         </Grid>
                         <Grid item xs={6}>
                             <Button className={`${Appclasses.fullWidth}`} variant="contained" color="primary">
-                                <Typography />
+                                <Typography className={Appclasses.colorWhite} type={TypographyType.xSmall}>
+                                    Process Waste
+                                </Typography>
                             </Button>
                         </Grid>
                     </Grid>

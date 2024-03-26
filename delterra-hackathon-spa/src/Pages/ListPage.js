@@ -56,6 +56,7 @@ const ListInboundTable = props => {
 
     return (
         <div className={Appclasses.p20}>
+
             <Grid className={`${Appclasses.mb8}`} container spacing={3}>
                 <Grid item xs={6} />
                 <Grid className={`${Appclasses.flexEnd}`} item xs={6}>
@@ -67,49 +68,78 @@ const ListInboundTable = props => {
                     />
                 </Grid>
             </Grid>
-            <TableContainer component={Paper}>
-                <Table aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>
-                                <Typography />
-                                Delivery Id</TableCell>
-                            <TableCell>License Plate</TableCell>
-                            <TableCell align="right">Organic Weight</TableCell>
-                            <TableCell align="right">Total Weight</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {tableData.map((row) => {
-                            let intRejectedWeight = isNaN(parseInt(row.rejected_weight)) ? 0 : parseInt(row.rejected_weight)
-                            let intOrganicWeight = isNaN(parseInt(row.organic_weight)) ? 0 : parseInt(row.organic_weight)
-                            let intInOrganicWeight = isNaN(parseInt(row.inorganic_weight)) ? 0 : parseInt(row.inorganic_weight)
-                            let intHardOrganicWeight = isNaN(parseInt(row.hard_organic_weight)) ? 0 : parseInt(row.hard_organic_weight)
-
-                            const totalWeight = intRejectedWeight + intOrganicWeight + intInOrganicWeight + intHardOrganicWeight
-                            return (
-                                <TableRow key={row.id}>
-                                    <TableCell component="th" scope="row">
-                                        {row.id}
+            {tableData.length > 0 ? (
+                <>
+                    <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>
+                                        <Typography type={TypographyType.xxSmallBold}>
+                                            Delivery Id
+                                        </Typography>
                                     </TableCell>
-                                    <TableCell align="right">{row.license_plate}</TableCell>
-                                    <TableCell align="right">{row.organic_weight}</TableCell>
-                                    <TableCell align="right">{totalWeight}</TableCell>
+                                    <TableCell>
+                                        <Typography type={TypographyType.xxSmallBold}>
+                                            License Plate
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Typography type={TypographyType.xxSmallBold}>
+                                            Organic Weight
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Typography type={TypographyType.xxSmallBold}>
+                                            Total Weight
+                                        </Typography>
+                                    </TableCell>
                                 </TableRow>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {tableData.map((row) => {
+                                    let intRejectedWeight = isNaN(parseInt(row.rejected_weight)) ? 0 : parseInt(row.rejected_weight)
+                                    let intOrganicWeight = isNaN(parseInt(row.organic_weight)) ? 0 : parseInt(row.organic_weight)
+                                    let intInOrganicWeight = isNaN(parseInt(row.inorganic_weight)) ? 0 : parseInt(row.inorganic_weight)
+                                    let intHardOrganicWeight = isNaN(parseInt(row.hard_organic_weight)) ? 0 : parseInt(row.hard_organic_weight)
 
-            <Grid container className={Appclasses.mt16}>
-                <Button
-                    startIcon={<AddIcon />}
-                    onClick={handleAddInbound}
-                    className={`${Appclasses.fullWidth}`} variant="contained" color="primary" type="submit">
-                    Add Inbound Delivery
-                </Button>
-            </Grid>
+                                    const totalWeight = intRejectedWeight + intOrganicWeight + intInOrganicWeight + intHardOrganicWeight
+                                    return (
+                                        <TableRow key={row.id}>
+                                            <TableCell component="th" scope="row">
+                                                {row.id}
+                                            </TableCell>
+                                            <TableCell align="right">{row.license_plate}</TableCell>
+                                            <TableCell align="right">{row.organic_weight}</TableCell>
+                                            <TableCell align="right">{totalWeight}</TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <Grid container className={Appclasses.mt16}>
+                        <Button
+                            startIcon={<AddIcon />}
+                            onClick={handleAddInbound}
+                            className={`${Appclasses.fullWidth}`} variant="contained" color="primary" type="submit">
+                            Add Inbound Delivery
+                        </Button>
+                    </Grid>
+                </>
+            ) : (
+                <Grid
+                    container
+                    className={`${Appclasses.mt16} ${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16}`}
+                    direction="column"
+                >
+                    <Typography type={TypographyType.xLarge}>
+                        No List of Inbound Found
+                    </Typography>
+                </Grid>
+            )}
+
+
         </div >
     )
 }

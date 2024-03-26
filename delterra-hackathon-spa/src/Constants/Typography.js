@@ -112,4 +112,8 @@ export const TypographyType = {
         ...xSmall,
         fontWeight: 500,
     },
+    xxSmallBold: {
+        ...xSmall,
+        fontWeight: 700,
+    },
 }

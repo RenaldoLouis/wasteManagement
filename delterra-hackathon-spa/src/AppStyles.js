@@ -210,5 +210,13 @@ export const useAppStyles = makeStyles({
 
     fullHeightvh: {
         height: "calc(100svh - 56px)"
+    },
+
+    colorWhite: {
+        color: "white !important",
+    },
+
+    colorRed: {
+        color: "red !important",
     }
 })
