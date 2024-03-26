@@ -9,7 +9,8 @@ const Form = props => {
         placeholder,
         onChange,
         error,
-        fullWidth
+        fullWidth,
+        type
     } = props
 
     return (
@@ -22,6 +23,7 @@ const Form = props => {
             error={error}
             fullWidth={true}
             variant="filled"
+            type={type}
         />
     )
 }
