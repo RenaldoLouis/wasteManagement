@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { ResponsiveBar } from "@nivo/bar";
 import DashboardApi from '../Apis/DashboardApi';
 import { Each } from '../Components/Each/Each';
 import { ResponsivePie } from '@nivo/pie';
+import { ResponsiveFunnel } from '@nivo/funnel'
+import { ResponsiveBar } from "@nivo/bar";
+
 import Typography from '../Components/Typography/Typography';
 import { TypographyType } from '../Constants/Typography';
 
+import { useAppStyles } from '../AppStyles';
+import { useStyles } from '../styles/MainPageStyles';
+
 const MainPage = props => {
+    const appClasses = useAppStyles();
+    const classes = useStyles();
     const [pokemon, setPokemon] = useState([]);
     const data = [
         {
@@ -81,14 +88,14 @@ const MainPage = props => {
 
     return (
         <div style={{ width: '100vw', height: '100vh' }}>
-            <Each of={pokemon} render={(data, i) =>
+            {/* <Each of={pokemon} render={(data, i) =>
                 <Typography
                     type={TypographyType.small}
                 >
                     {data.name}
                 </Typography>
-            } />
-            <ResponsiveBar
+            } /> */}
+            {/* <ResponsiveBar
                 data={data}
                 keys={["degress"]}
                 indexBy="day"
@@ -108,7 +115,43 @@ const MainPage = props => {
                     legendPosition: "middle",
                     legendOffset: -40
                 }}
+            /> */}
+            <div className={`${appClasses.p8} ${appClasses.flexCenter} ${classes.titleDashboardContainer}`}>
+                <Typography type={TypographyType.xLarge}>
+                    Organic Compost Conversion
+                </Typography>
+            </div>
+            <ResponsiveFunnel
+                data={data2}
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                interpolation="linear"
+                shapeBlending={0.37}
+                valueFormat=">-.4s"
+                colors={{ scheme: 'spectral' }}
+                borderWidth={0}
+                borderColor={{ from: 'color', modifiers: [] }}
+                labelColor={{
+                    from: 'color',
+                    modifiers: [
+                        [
+                            'darker',
+                            3
+                        ]
+                    ]
+                }}
+                beforeSeparatorLength={100}
+                beforeSeparatorOffset={20}
+                afterSeparatorLength={100}
+                afterSeparatorOffset={20}
+                currentPartSizeExtension={10}
+                currentBorderWidth={40}
+                motionConfig="wobbly"
             />
+            <div className={appClasses.flexCenter}>
+                <Typography type={TypographyType.xLarge}>
+                    composition performance
+                </Typography>
+            </div>
             <ResponsivePie
                 data={data2}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
