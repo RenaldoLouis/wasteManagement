@@ -1,4 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 import { Switch, Route } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
@@ -49,78 +57,46 @@ const PokemonList = props => {
     )
 }
 
-const WasteRecordForm = props => {
+const ListInboundTable = props => {
     const { Appclasses } = props
 
-    const [tanggal, setTanggal] = useState("")
-    const [idArmada, setIdArmada] = useState("")
-    const [kemurnian, setKemurnian] = useState("")
-    const [volume, setVolume] = useState("")
-    const [catatan, setCatatan] = useState("")
-
-    const handleSubmitWaste = (event) => {
-        event.preventDefault()
-        console.log(tanggal, idArmada, kemurnian, volume, catatan)
+    function createData(name, calories, fat, carbs, protein) {
+        return { name, calories, fat, carbs, protein };
     }
 
-    return (
-        <form onSubmit={handleSubmitWaste}>
-            <Grid
-                container
-                className={`${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16}`}
-                direction="column"
-            >
-                <Grid item>
-                    <Form
-                        id="tanggal"
-                        label="Tanggal"
-                        value={tanggal}
-                        onChange={e => setTanggal(e.target.value)}
-                    />
-                </Grid>
-                <Grid item>
-                    <Form
-                        id="id-armada"
-                        label="ID Armada"
-                        value={idArmada}
-                        onChange={e => setIdArmada(e.target.value)}
-                    />
-                </Grid>
-                <Grid item>
-                    <Form
-                        id="kemurnian"
-                        label="% Kemurnian"
-                        value={kemurnian}
-                        onChange={e => setKemurnian(e.target.value)}
-                    />
-                </Grid>
-                <Grid item>
-                    <Form
-                        id="volume"
-                        label="$ Volume"
-                        value={volume}
-                        onChange={e => setVolume(e.target.value)}
-                    />
-                </Grid>
-                <Grid item>
-                    <Form
-                        id="catatan"
-                        label="Catatan"
-                        value={catatan}
-                        onChange={e => setCatatan(e.target.value)}
-                    />
-                </Grid>
+    const rows = [
+        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+        createData('Eclair', 262, 16.0, 24, 6.0),
+        createData('Cupcake', 305, 3.7, 67, 4.3),
+        createData('Gingerbread', 356, 16.0, 49, 3.9),
+    ];
 
-                <Grid item spacing={3}>
-                    <Button variant="contained">
-                        Sampah Masuk
-                    </Button>
-                    <Button variant="contained" color="primary" type="submit">
-                        Mulai Pengomposan
-                    </Button>
-                </Grid>
-            </Grid>
-        </form>
+    return (
+        <TableContainer component={Paper}>
+            <Table aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Delivery Id</TableCell>
+                        <TableCell>License Plate</TableCell>
+                        <TableCell align="right">Organic Weight</TableCell>
+                        <TableCell align="right">Total Weight</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map((row) => (
+                        <TableRow key={row.name}>
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.calories}</TableCell>
+                            <TableCell align="right">{row.fat}</TableCell>
+                            <TableCell align="right">{row.carbs}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 
@@ -167,11 +143,12 @@ const ListPage = props => {
     return (
         <Switch>
             <Route path={ROUTE_PATH.LIST} exact>
-                {inboundDeliveryData.length <= 0 ? (
+                {/* {inboundDeliveryData.length <= 0 ? (
                     <PlaceHolder Appclasses={Appclasses} />
                 ) : (
-                    <WasteRecordForm Appclasses={Appclasses} />
-                )}
+                    <ListInboundTable Appclasses={Appclasses} />
+                )} */}
+                <ListInboundTable Appclasses={Appclasses} />
             </Route>
 
             <Route path={ROUTE_PATH.DETAIL + "/:id"}>
