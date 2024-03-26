@@ -20,7 +20,8 @@ const Form = props => {
             placeholder={placeholder}
             onChange={onChange}
             error={error}
-            fullWidth={fullWidth}
+            fullWidth={true}
+            variant="filled"
         />
     )
 }

@@ -155,6 +155,10 @@ export const useAppStyles = makeStyles({
     gap44: { gap: 44 },
     gap48: { gap: 48 },
 
+    flex: {
+        display: "flex"
+    },
+
     flexStart: {
         display: "flex",
         justifyContent: "flex-start",
@@ -198,6 +202,10 @@ export const useAppStyles = makeStyles({
 
     fullHeight: {
         height: "100%"
+    },
+
+    fullWidth: {
+        width: "100%"
     },
 
     fullHeightvh: {
