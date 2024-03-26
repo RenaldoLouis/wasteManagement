@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DashboardApi from '../Apis/DashboardApi';
 import { Each } from '../Components/Each/Each';
 import Typography from '../Components/Typography/Typography';
@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { Button, Grid } from '@material-ui/core';
 import Form from '../Components/Form/Form';
 import { useAppStyles } from '.././AppStyles';
+import { AppContext } from '../App';
 
 const PokemonList = props => {
     const [pokemon, setPokemon] = useState([]);
@@ -122,6 +123,7 @@ const WasteRecordForm = props => {
 }
 
 const ListPage = props => {
+    const { isNavbarBack, setIsNavbarBack } = useContext(AppContext)
     return (
         <Switch>
             <Route path={ROUTE_PATH.LIST} exact>
