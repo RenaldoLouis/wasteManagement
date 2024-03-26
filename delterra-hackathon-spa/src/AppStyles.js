@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { Color } from './Constants/Color'
 
 export const useAppStyles = makeStyles({
     p2: { padding: 2 },
@@ -218,5 +219,15 @@ export const useAppStyles = makeStyles({
 
     colorRed: {
         color: "red !important",
+    },
+    containerWaste: {
+        width: "150px",
+        height: "150px",
+        background: Color.primary[10],
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        width: "100%"
     }
 })

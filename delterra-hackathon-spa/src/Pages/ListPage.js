@@ -182,9 +182,32 @@ const ListPage = props => {
                     </Show.When>
 
                     <Show.Else>
-                        <Typography type={TypographyType.xxLargeBold}>
-                            LOADING...
-                        </Typography>
+                        <Grid
+                            container
+                            className={`${Appclasses.flexCenter} ${Appclasses.alignCenter} ${Appclasses.gap16}`}
+                            direction="column"
+                        >
+                            <Typography type={TypographyType.xxLargeBold}>
+                                {isLoading ? (
+                                    <div>
+
+                                        LOADING...
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <Typography type={TypographyType.xLarge}>
+                                            No List of Inbound Found
+                                        </Typography>
+                                    </div>
+                                )}
+                            </Typography>
+                            <Button
+                                color="primary"
+                                startIcon={<AddIcon />}
+                                onClick={handleAddInbound}
+                            >add Inbound Data
+                            </Button>
+                        </Grid>
                     </Show.Else>
                 </Show>
             </Route>

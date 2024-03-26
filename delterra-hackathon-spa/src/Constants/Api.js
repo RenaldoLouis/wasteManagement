@@ -5,3 +5,4 @@
 export const BASE_URL = "http://192.168.210.99:3001/api/v1/delterra/";
 export const INBOUND_API = "inboundDelivery";
 export const WASTE_API = "waste"
+export const DASHBOARD_API = "waste";
