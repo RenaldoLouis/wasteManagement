@@ -1,29 +1,42 @@
-# README #
+# Waste Management System
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This repository contains the source code for a Waste Management System, consisting of two main components: a backend service and a frontend application.
 
-### What is this repository for? ###
+## Overview
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+The Waste Management System is designed to streamline the process of managing waste collection, disposal, and recycling. It provides features to track waste generation, schedule pickups, manage waste disposal sites, and analyze waste data for better decision-making.
 
-### How do I get set up? ###
+## Components
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### 1. Backend Service
 
-### Contribution guidelines ###
+The backend service is responsible for handling the core logic and data management of the Waste Management System. It includes functionalities such as:
 
-* Writing tests
-* Code review
-* Other guidelines
+- API endpoints for managing waste collection schedules, pickup requests, and waste disposal sites.
+- Database integration for storing and retrieving waste-related data.
+- Integration with external services or databases for additional functionalities.
 
-### Who do I talk to? ###
+The backend service is implemented using Express.
 
-* Repo owner or admin
-* Other community or team contact
+### 2. Frontend Application
+
+The frontend application provides a user-friendly interface for interacting with the Waste Management System. It allows users to:
+
+- View waste collection schedules and pickup requests.
+- Submit new pickup requests or schedule changes.
+- Monitor waste disposal site locations and capacity.
+
+The frontend application is developed using React, providing a responsive and intuitive user experience.
+
+## Setup Instructions
+
+To set up the Waste Management System locally, follow these general steps:
+
+1. **Backend Service Setup:**
+
+   - Navigate to the `backend` folder.
+   - Refer to the README.md file inside the `backend` folder for detailed setup instructions.
+
+2. **Frontend Application Setup:**
+   - Navigate to the `frontend` folder.
+   - Refer to the README.md file inside the `frontend` folder for detailed setup instructions.
